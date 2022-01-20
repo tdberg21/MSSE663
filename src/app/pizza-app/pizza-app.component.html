@@ -1,0 +1,15 @@
+<div class="pizza-app">
+  <div class="pizza-viewer">
+    <div class="pizza">
+      <div class="pizza_board"></div>
+      <div class="pizza_base"></div>
+      <!-- <div class="pizza-toppings"></div> -->
+    </div>
+    <div class="pizza_summary">
+      <p>Small {{ prices.small.size | size}} </p>
+      <p>Medium {{ prices.medium.size | size}} </p>
+      <p>Large {{ prices.large.size | size}} </p>
+      <p>X-large {{ prices["x-large"].size | size}} </p>
+    </div>
+  </div>
+</div>
