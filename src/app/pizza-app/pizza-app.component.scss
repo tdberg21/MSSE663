@@ -1,0 +1,34 @@
+.pizza-viewer {
+  width: 530px;
+  position: relative;
+  
+  .pizza {
+    width: 100%;
+    height: 342px;
+    position: absolute;
+    z-index: 1;
+
+    &_board {
+      background: url(./../../assets/toppings/board.svg) no-repeat 0 20px;
+      background-size: contain;
+      width: 500px;
+      height: 342px;
+      position: absolute;
+      z-index: inherit;
+      top: 30px;
+      left: 30px;
+    }
+
+    &_base {
+      background: url(./../../assets/toppings/base.svg) no-repeat 0 20px;
+      background-size: contain;
+      width: 390px;
+      height: 322px;
+      position: absolute;
+      z-index: 2;
+      top: 23px;
+      right: 30px;
+    }
+  }
+}
+
