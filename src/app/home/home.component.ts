@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { PizzasService } from "../shared/services/pizzas.service";
 
 @Component({
   selector: 'app-home',
@@ -7,5 +8,7 @@ import { Component } from "@angular/core";
 })
 
 export class HomeComponent {
-  // title= { home! | titlecase}
+  readonly pizzas$ = this.pizzasService.getPizzaPresets();
+
+  constructor(private pizzasService: PizzasService) {};
 }

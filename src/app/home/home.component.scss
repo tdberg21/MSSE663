@@ -1,0 +1,30 @@
+.pizzas-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  
+  &-item {
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: #D3D3D3;
+    font-size: 2rem;
+    
+    &_toppings {
+      border: 2px solid black;
+      border-radius: 8px;
+      padding: 5px;
+      background-color: #d9603b;
+      margin-left: 3px;
+      font-size: 12px;
+    }
+  }
+
+  &-item:hover {
+    background-color: #ffcccb;
+    cursor: pointer;
+  }
+
+}
