@@ -15,6 +15,11 @@ import { PizzaToppingsComponent } from './pizza-app/components/pizza-toppings/pi
 import { PizzaViewerComponent } from './pizza-app/components/pizza-viewer/pizza-viewer.component';
 import { PizzaCreatorComponent } from './pizza-app/components/pizza-creator/pizza-creator.component';
 import { PizzaSummaryComponent } from './pizza-app/components/pizza-summary/pizza-summary.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { PizzaEffects, reducer } from './pizza-app/state/';
 
 
 @NgModule({
@@ -35,7 +40,16 @@ import { PizzaSummaryComponent } from './pizza-app/components/pizza-summary/pizz
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({pizzas: reducer }, {
+      metaReducers: !environment.production ? [] : [],
+      runtimeChecks: {
+        strictActionImmutability: true,
+        strictStateImmutability: true,
+      }
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([PizzaEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
