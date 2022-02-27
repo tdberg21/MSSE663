@@ -1,25 +1,44 @@
-import { PIZZAS } from "../lib/pizza";
-import { PizzaEntity } from "../lib/api-interfaces";
+import { Handler } from 'express';
+import { PizzaEntity } from '../lib/api-interfaces';
+import { Pizzas } from './pizzas.model';
 
 export class PizzaService {
-  private readonly pizzaPresets: PizzaEntity[] = PIZZAS;
-  private readonly pizzas: PizzaEntity[] = [];
+  getPizzaPresets: Handler = (req, res) => {
+    Pizzas.find({}, (err: any, data: PizzaEntity[]) => {
+      if (err) {
+        return res.send(err);
+      }
+      res.send({
+        msg: 'Found pizza presets',
+        pizzas: data,
+      });
+    });
+  };
 
-  getPizzaPresets(): PizzaEntity[] {
-    return this.pizzaPresets;
-  }
+  getPizzaPreset: Handler = (req, res) => {
+    Pizzas.findById(req.params.id, (err: any, data: PizzaEntity) => {
+      if (err) {
+        return res.send(err);
+      }
+      res.send({
+        msg: 'Found pizza preset',
+        pizza: data,
+      });
+    });
+  };
 
-  getCreatedPizzas(): PizzaEntity[] {
-    return this.pizzas;
-  }
+  createPizza: Handler = (req, res) => {
+    const { pizzas } = req.body;
+    const newPizzas = new Pizzas(pizzas);
 
-  getCreatedPizza(id: string): PizzaEntity {
-    const pizza = this.pizzas.find(pizza => pizza.id === id)
-
-    if(!pizza) {
-      throw new Error('Pizza not found')
-    }
-
-    return pizza;
-  }
- }
+    newPizzas.save((err: any, data: any) => {
+      if (err) {
+        return res.send(err);
+      }
+      res.send({
+        msg: 'Created pizzas',
+        pizzas: [data],
+      });
+    });
+  };
+}
