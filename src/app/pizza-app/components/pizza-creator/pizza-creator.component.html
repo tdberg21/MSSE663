@@ -6,13 +6,13 @@
       Add Pizza
     </button>
   </h2>
-
+  
   <div *ngFor="let pizza of pizzas.controls; let i = index">
     <div class="pizza-creator__header" (click)="togglePizza(i)">
       <i class="fa fa-fw pizza-creator__icon" [class.fa-chevron-down]="openPizza !== i"
-        [class.fa-chevron-up]="openPizza === i"></i>
+      [class.fa-chevron-up]="openPizza === i"></i>
       Pizza {{ i + 1 }}
-
+      
       <i class="fa fa-fw pizza-creator__status" [class.fa-check]="pizza.valid" [class.fa-times]="pizza.invalid">
       </i>
       <div class="pizza-creater__delete" *ngIf="pizzas.controls.length > 1" (click)="removePizza(i)">
@@ -20,12 +20,13 @@
       </div>
     </div>
     <div class="pizza-creator__content" [class.pizza-creator__content--open]="openPizza === i"
-      [formGroup]="toFormGroup(pizza)">
-      <h3>Select the size <span class="required">*</span></h3>
-      <app-pizza-size formControlName="size"> </app-pizza-size>
-
+    [formGroup]="toFormGroup(pizza)">
+    <h3>Select the size <span class="required">*</span></h3>
+    <app-pizza-size formControlName="size"> </app-pizza-size>
+    <div panel>
       <h3>Pick your toppings</h3>
       <app-pizza-toppings formControlName="toppings"></app-pizza-toppings>
     </div>
   </div>
+</div>
 </div>
